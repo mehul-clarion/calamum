@@ -28,7 +28,7 @@
 
         <div id="content-main">
           <div class="field field-el">
-            <h2>API Description</h2>
+            <h2>Description</h2>
             <p><%= @resource.description %></p>
           </div>
 
@@ -45,12 +45,66 @@
               <% end %>
             </div>
           </div>
+          
+          <div class="field">
+            <h2>Error Codes</h2>
+            <% unless @resource.sub_errors.nil? %>
+              <div class="content api-docs">
+                <% unless @resource.sub_errors["http_errors"].nil? %>
+                  <table>
+                    <thead>
+                      <tr>
+                        <th class="views-field-title">Code</th>
+                        <th class="views-field-title">Text</th>
+                        <th class="views-field-title">Description</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <% @resource.sub_errors["http_errors"].each do |error| %>
+                        <tr>
+                          <td class="">
+                            <%= error['code'] %>
+                          </td>
+                          <td class="views-field">
+                            <%= error['text'] %>
+                          </td>
+                          <td class="views-field">
+                            <%= error['description'] %>
+                          </td>
+                        </tr>
+                      <% end %>
+                    </tbody>
+                  </table>
+                <% end %>
+              </div>
+            <% end %>
+          </div>
+
+          <% if @resource.example_url %>
+            <div class="field field-el">
+              <h2>Example URL constructs</h2>
+              <div class="odd">
+                <div class="parameter">
+                  <%= @resource.example_url %>
+                </div>
+              </div>
+            </div>
+          <% end %>
 
           <% if @resource.response %>
             <div class="group-example-request">
-              <h2>Example Response</h2>
+              <h2>Success Example</h2>
               <div class="content">
                 <pre class="prettyprint"><%= pj @resource.response %></pre>
+              </div>
+            </div>
+          <% end %>
+
+          <% if @resource.failure_response %>
+            <div class="group-example-request">
+              <h2>Failure Example</h2>
+              <div class="content">
+                <pre class="prettyprint"><%= pj @resource.failure_response %></pre>
               </div>
             </div>
           <% end %>
