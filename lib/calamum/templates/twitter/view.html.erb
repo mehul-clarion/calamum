@@ -91,6 +91,15 @@
             </div>
           <% end %>
 
+          <% if @resource.request_parameters %>
+            <div class="group-example-request">
+              <h2>Example request parameters</h2>
+              <div class="content">
+                <pre class="prettyprint"><%= pj @resource.request_parameters %></pre>
+              </div>
+            </div>
+          <% end %>
+
           <% if @resource.response %>
             <div class="group-example-request">
               <h2>Success Example</h2>
