@@ -54,22 +54,22 @@
                   <table>
                     <thead>
                       <tr>
+                        <th class="views-field-title">HTTP Error</th>
                         <th class="views-field-title">Code</th>
-                        <th class="views-field-title">Text</th>
-                        <th class="views-field-title">Description</th>
+                        <th class="views-field-title">Message</th>
                       </tr>
                     </thead>
                     <tbody>
                       <% @resource.sub_errors["http_errors"].each do |error| %>
                         <tr>
                           <td class="">
+                            <%= error['http_error'] %>
+                          </td>
+                          <td class="views-field">
                             <%= error['code'] %>
                           </td>
                           <td class="views-field">
-                            <%= error['text'] %>
-                          </td>
-                          <td class="views-field">
-                            <%= error['description'] %>
+                            <%= error['message'] %>
                           </td>
                         </tr>
                       <% end %>
