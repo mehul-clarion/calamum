@@ -18,7 +18,7 @@ class Calamum::Resource
     @sub_errors = attrs['sub_errors'] || {}
     @description = attrs['description']
     @example_url = attrs['example_url']
-    @request_parameters = attrs['request_parameters'] || {}
+    @request_parameters = attrs['request_parameters']
     @response = attrs['response']
     @failure_response = attrs['failure_response']
     @tryit = attrs['tryit']
